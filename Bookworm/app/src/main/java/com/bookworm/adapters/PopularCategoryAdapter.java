@@ -19,6 +19,7 @@ public class PopularCategoryAdapter extends RecyclerView.Adapter<PopularCategory
 
     private Context mContext;
     private List<PopularCategory> mCategories;
+    //private List<> mAdapters;
 
     public PopularCategoryAdapter(List<PopularCategory> list, Context context) {
         mContext = context;
@@ -34,7 +35,7 @@ public class PopularCategoryAdapter extends RecyclerView.Adapter<PopularCategory
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.recyclerView.setAdapter(new VolumeInfoAdapter(mContext, mCategories.get(position).getmList()));
+        holder.recyclerView.setAdapter(new VolumeInfoAdapter(mContext, mCategories.get(position).getList()));
         holder.recyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
         holder.recyclerView.setHasFixedSize(true);
         holder.tvHeading.setText(mCategories.get(position).getCategory());
@@ -43,6 +44,10 @@ public class PopularCategoryAdapter extends RecyclerView.Adapter<PopularCategory
     @Override
     public int getItemCount() {
         return mCategories.size();
+    }
+
+    public void setAdapters(VolumeInfoAdapter volumeInfoAdapter) {
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

@@ -13,6 +13,11 @@ public class PopularCategory {
         mList = new ArrayList<>();
     }
 
+    public PopularCategory(String mCategory, List<VolumeInfo> list) {
+        this.mCategory = mCategory;
+        mList = list;
+    }
+
     public String getCategory() {
         return mCategory;
     }
@@ -21,11 +26,11 @@ public class PopularCategory {
         this.mCategory = mCategory;
     }
 
-    public List<VolumeInfo> getmList() {
+    public List<VolumeInfo> getList() {
         return mList;
     }
 
-    public void setmList(List<VolumeInfo> mList) {
+    public void setList(List<VolumeInfo> mList) {
         this.mList = mList;
     }
 }

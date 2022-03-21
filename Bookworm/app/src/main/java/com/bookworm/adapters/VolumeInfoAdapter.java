@@ -35,8 +35,8 @@ public class VolumeInfoAdapter extends RecyclerView.Adapter<VolumeInfoAdapter.Vo
     @Override
     public void onBindViewHolder(@NonNull VolumeInfoViewHolder holder, int position) {
         VolumeInfo volume = mList.get(position);
-        holder.tv.setText(volume.getName());
-        holder.tv1.setText(volume.getAuthor());
+        holder.tv.setText(volume.title);
+        holder.tv1.setText(volume.authors.get(0));
         //Picasso.get().load(chapter.imageUrl).into(holder.ivChapter);
     }
 
@@ -53,7 +53,7 @@ public class VolumeInfoAdapter extends RecyclerView.Adapter<VolumeInfoAdapter.Vo
             super(itemView);
             tv = (TextView) itemView.findViewById(R.id.tvVolumeName);
             tv1 = (TextView) itemView.findViewById(R.id.tvVolumeAuthorName);
-            //ivChapter = (ImageView) itemView.findViewById(R.id.ivChapter);
+            ivVolumeInfo = (ImageView) itemView.findViewById(R.id.ivChapter);
         }
     }
 }
