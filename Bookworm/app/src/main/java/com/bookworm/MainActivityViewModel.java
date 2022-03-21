@@ -23,7 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivityViewModel extends ViewModel {
 
-    private String API_KEY = "AIzaSyCxdS-ou84XQiJikpy0Qa_TSJkTZ9L0WFc";
+    private String API_KEY = "";
 
     private MutableLiveData<List<VolumeInfo>> mList;
 
