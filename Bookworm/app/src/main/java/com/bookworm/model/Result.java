@@ -13,11 +13,6 @@ class PanelizationSummary{
     public boolean containsImageBubbles;
 }
 
-class ImageLinks{
-    public String smallThumbnail;
-    public String thumbnail;
-}
-
 class IndustryIdentifier{
     public String type;
     public String identifier;

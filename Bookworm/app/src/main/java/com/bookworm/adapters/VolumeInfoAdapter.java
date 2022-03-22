@@ -1,6 +1,7 @@
 package com.bookworm.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,10 @@ import android.widget.TextView;
 
 import com.bookworm.R;
 import com.bookworm.model.VolumeInfo;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -37,7 +42,10 @@ public class VolumeInfoAdapter extends RecyclerView.Adapter<VolumeInfoAdapter.Vo
         VolumeInfo volume = mList.get(position);
         holder.tv.setText(volume.title);
         holder.tv1.setText(volume.authors.get(0));
-        //Picasso.get().load(chapter.imageUrl).into(holder.ivChapter);
+
+        String url = volume.imageLinks.thumbnail.replace("http", "https");
+
+        Picasso.get().load(url).into(holder.ivVolumeInfo);
     }
 
     @Override
@@ -53,7 +61,7 @@ public class VolumeInfoAdapter extends RecyclerView.Adapter<VolumeInfoAdapter.Vo
             super(itemView);
             tv = (TextView) itemView.findViewById(R.id.tvVolumeName);
             tv1 = (TextView) itemView.findViewById(R.id.tvVolumeAuthorName);
-            ivVolumeInfo = (ImageView) itemView.findViewById(R.id.ivChapter);
+            ivVolumeInfo = (ImageView) itemView.findViewById(R.id.ivVolumeInfo);
         }
     }
 }
