@@ -4,17 +4,12 @@ import android.util.Log;
 
 import com.bookworm.model.Result;
 import com.bookworm.model.VolumeInfo;
-import com.google.gson.Gson;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -22,24 +17,20 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivityViewModel extends ViewModel {
+    public static final String TAG = MainActivityViewModel.class.getSimpleName();
 
     private String API_KEY = "";
 
     private MutableLiveData<List<VolumeInfo>> mList;
 
-    //we will call this method to get the data
     public LiveData<List<VolumeInfo>> getVolumes() {
-        //if the list is null
         if (mList == null) {
-            mList = new MutableLiveData<List<VolumeInfo>>();
-            //we will load it asynchronously from server in this method
+            mList = new MutableLiveData<>();
             loadVolumes();
         }
 
-        //finally we will return the list
         return mList;
     }
-
 
     private void loadVolumes() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -54,17 +45,14 @@ public class MainActivityViewModel extends ViewModel {
         call.enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
-
-                //finally we are setting the list to our MutableLiveData
-
                 Result r = response.body();
+                Log.d(TAG, response.body().toString());
                 mList.setValue(r.getVolumes());
-                Log.d("KRITI response = ", response.body().toString());
             }
 
             @Override
             public void onFailure(Call<Result> call, Throwable t) {
-                Log.d("KRITI onFailure", t.getMessage());
+                Log.d(TAG, t.getMessage());
             }
         });
     }

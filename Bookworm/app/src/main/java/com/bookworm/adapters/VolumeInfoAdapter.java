@@ -1,7 +1,6 @@
 package com.bookworm.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +9,6 @@ import android.widget.TextView;
 
 import com.bookworm.R;
 import com.bookworm.model.VolumeInfo;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -40,8 +36,8 @@ public class VolumeInfoAdapter extends RecyclerView.Adapter<VolumeInfoAdapter.Vo
     @Override
     public void onBindViewHolder(@NonNull VolumeInfoViewHolder holder, int position) {
         VolumeInfo volume = mList.get(position);
-        holder.tv.setText(volume.title);
-        holder.tv1.setText(volume.authors.get(0));
+        holder.tvVolumeName.setText(volume.title);
+        holder.tvVolumeAuthorName.setText(volume.authors.get(0));
 
         String url = volume.imageLinks.thumbnail.replace("http", "https");
 
@@ -55,12 +51,12 @@ public class VolumeInfoAdapter extends RecyclerView.Adapter<VolumeInfoAdapter.Vo
 
     public class VolumeInfoViewHolder extends RecyclerView.ViewHolder {
         public ImageView ivVolumeInfo;
-        public TextView tv, tv1;
+        public TextView tvVolumeName, tvVolumeAuthorName;
 
         public VolumeInfoViewHolder(View itemView) {
             super(itemView);
-            tv = (TextView) itemView.findViewById(R.id.tvVolumeName);
-            tv1 = (TextView) itemView.findViewById(R.id.tvVolumeAuthorName);
+            tvVolumeName = (TextView) itemView.findViewById(R.id.tvVolumeName);
+            tvVolumeAuthorName = (TextView) itemView.findViewById(R.id.tvVolumeAuthorName);
             ivVolumeInfo = (ImageView) itemView.findViewById(R.id.ivVolumeInfo);
         }
     }

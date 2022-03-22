@@ -19,7 +19,6 @@ public class PopularCategoryAdapter extends RecyclerView.Adapter<PopularCategory
 
     private Context mContext;
     private List<PopularCategory> mCategories;
-    //private List<> mAdapters;
 
     public PopularCategoryAdapter(List<PopularCategory> list, Context context) {
         mContext = context;
@@ -44,10 +43,6 @@ public class PopularCategoryAdapter extends RecyclerView.Adapter<PopularCategory
     @Override
     public int getItemCount() {
         return mCategories.size();
-    }
-
-    public void setAdapters(VolumeInfoAdapter volumeInfoAdapter) {
-
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
