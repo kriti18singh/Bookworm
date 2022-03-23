@@ -10,7 +10,6 @@ public class PopularCategory {
 
     public PopularCategory(String mCategory) {
         this.mCategory = mCategory;
-        mList = new ArrayList<>();
     }
 
     public PopularCategory(String mCategory, List<VolumeInfo> list) {

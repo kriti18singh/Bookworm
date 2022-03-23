@@ -37,11 +37,16 @@ public class VolumeInfoAdapter extends RecyclerView.Adapter<VolumeInfoAdapter.Vo
     public void onBindViewHolder(@NonNull VolumeInfoViewHolder holder, int position) {
         VolumeInfo volume = mList.get(position);
         holder.tvVolumeName.setText(volume.title);
-        holder.tvVolumeAuthorName.setText(volume.authors.get(0));
+        if (volume.authors != null) {
+            holder.tvVolumeAuthorName.setText(volume.authors.get(0));
+        }
+        if (volume.imageLinks != null) {
+            String url = volume.imageLinks.thumbnail.replace("http", "https");
 
-        String url = volume.imageLinks.thumbnail.replace("http", "https");
-
-        Picasso.get().load(url).into(holder.ivVolumeInfo);
+            Picasso.get().load(url).into(holder.ivVolumeInfo);
+        } else {
+            Picasso.get().load(R.drawable.ic_launcher_foreground).into(holder.ivVolumeInfo);
+        }
     }
 
     @Override

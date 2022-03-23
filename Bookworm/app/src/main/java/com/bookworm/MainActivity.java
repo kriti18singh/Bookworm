@@ -12,6 +12,7 @@ import android.os.Bundle;
 import com.bookworm.adapters.PopularCategoryAdapter;
 import com.bookworm.model.PopularCategory;
 import com.bookworm.model.VolumeInfo;
+import com.bookworm.network.BooksRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,29 +28,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //mCategoryList.add(new PopularCategory("fiction"));
-        //mCategoryList.add(new PopularCategory("romance"));
+        mCategoryList.add(new PopularCategory("fiction"));
+        mCategoryList.add(new PopularCategory("romance"));
+        mCategoryList.add(new PopularCategory("thriller"));
 
         mMainView = findViewById(R.id.mainRecyclerView);
-
-
 
         LinearLayoutManager manager = new LinearLayoutManager(this);
         mMainView.setLayoutManager(manager);
 
+        MainActivityViewModel model = new ViewModelProvider(this, new MainActivityViewModelFactory(BooksRepository.getInstance())).get(MainActivityViewModel.class);
 
-        MainActivityViewModel model = new ViewModelProvider(this).get(MainActivityViewModel.class);
-
-        model.getVolumes().observe(this, new Observer<List<VolumeInfo>>() {
+        model.getVolumes(mCategoryList).observe(this, new Observer<List<List<VolumeInfo>>>() {
             @Override
-            public void onChanged(@Nullable List<VolumeInfo> volumeList) {
-                //mCategoryAdapter.setAdapters(new VolumeInfoAdapter(MainActivity.this, volumeList));
-                mCategoryList.add(new PopularCategory("fiction", volumeList));
-                mCategoryList.add(new PopularCategory("romance"));
-
+            public void onChanged(@Nullable List<List<VolumeInfo>> volumeList) {
+                int i = 0;
+                for(PopularCategory p : mCategoryList) {
+                    p.setList(volumeList.get(i));
+                    i++;
+                }
                 mCategoryAdapter = new PopularCategoryAdapter(mCategoryList, MainActivity.this);
-
-
                 mMainView.setAdapter(mCategoryAdapter);
             }
         });
