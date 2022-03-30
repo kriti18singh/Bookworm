@@ -24,7 +24,7 @@ public class BooksRepository {
 
     private Api mApi;
 
-    interface RepositoryCallback<T> {
+    public interface RepositoryCallback<T> {
         void onComplete(List<List<VolumeInfo>> list);
     }
 

@@ -1,20 +1,22 @@
 package com.bookworm;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.MenuItemCompat;
+//import androidx.core.view.MenuItemCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.SearchManager;
-import android.content.ComponentName;
-import android.content.Context;
+//import android.app.SearchManager;
+//import android.content.ComponentName;
+//import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
-import android.widget.SearchView;
+import android.view.MenuItem;
+//import android.widget.SearchView;
 
 import com.bookworm.adapters.PopularCategoryAdapter;
 import com.bookworm.model.PopularCategory;
@@ -66,13 +68,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_home, menu);
-        SearchView search = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
-
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        search.setSearchableInfo(searchManager.getSearchableInfo(new ComponentName(this, BookSearchActivity.class)));
-        search.setQueryHint(getResources().getString(R.string.search_hint));
-        search.setIconifiedByDefault(false);
-        search.setIconified(false);
+//        SearchView search = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
+//
+//        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+//        search.setSearchableInfo(searchManager.getSearchableInfo(new ComponentName(this, BookSearchActivity.class)));
+//        search.setQueryHint(getResources().getString(R.string.search_hint));
+//        search.setIconifiedByDefault(false);
+//        search.setIconified(false);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_search) {
+            onSearchRequested();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
